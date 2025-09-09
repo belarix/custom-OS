@@ -1,0 +1,2 @@
+sudo apt update
+sudo apt install -y live-build debootstrap syslinux squashfs-tools xorriso qemu-system-x86
