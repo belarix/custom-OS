@@ -1,0 +1,68 @@
+mkdir -p os
+cd ~/os
+
+===================================
+
+lb config \
+  --mode debian \
+  --distribution bookworm \
+  --archive-areas "main contrib non-free non-free-firmware" \
+  --debian-installer false \
+  --architectures amd64 \
+  --memtest none
+
+=================================
+
+
+  grep DISTRIBUTION config/* || true
+  
+You should see bookworm
+===========================================
+
+By default, live-build writes sources inside the chroot (not in config/archives). If you want persistent repo overrides, you can create a file like:
+
+mkdir -p config/archives
+cat > config/archives/bookworm.list.chroot <<'EOF'
+deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
+deb http://deb.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
+EOF
+
+=====================
+
+
+IN CASE TERMINAL SHOWS AS BOOTHUP AND XFCE WONT SHOW DO THIS 
+
+
+mkdir -p config/hooks
+nano config/hooks/desktop.chroot
+
+
+
+#!/bin/sh
+set -e
+# Enable LightDM as default DM
+echo "/usr/sbin/lightdm" > /etc/X11/default-display-manager
+
+
+
+chmod +x config/hooks/desktop.chroot
+
+
+sudo lb clean --purge
+sudo lb config --distribution bookworm --archive-areas "main contrib non-free non-free-firmware"
+sudo lb build
+
+
+=============================================
+
+
+qemu-system-x86_64 -enable-kvm -cdrom live-image-amd64.hybrid.iso -m 2048
+
+
+
+
+
+
+
+
