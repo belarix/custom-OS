@@ -1,0 +1,59 @@
+inside >>> config/package-lists/live.list.chroot 
+ paste these 
+
+==============
+
+
+
+ # Firmware
+firmware-misc-nonfree
+firmware-iwlwifi
+firmware-realtek
+firmware-amd-graphics
+
+# Live system
+live-boot
+live-config
+live-config-systemd
+systemd-sysv
+lightdm
+
+# Desktop
+xfce4
+xfce4-goodies
+xfce4-whiskermenu-plugin
+firefox-esr
+
+# Apps
+evolution
+rhythmbox
+vlc
+shotwell
+libreoffice
+gimp
+kdenlive
+obs-studio
+
+# Calamares installer
+calamares
+calamares-settings-debian
+qt5-image-formats-plugins
+qml-module-qtquick-controls
+qml-module-qtquick-controls2
+qml-module-qtquick-templates2
+qml-module-qtquick-window2
+qml-module-qtquick2
+udisks2
+
+# Filesystem tools
+dosfstools
+e2fsprogs
+btrfs-progs
+f2fs-tools
+xfsprogs
+jfsutils
+reiserfsprogs
+ntfs-3g
+
+# Bootloader support
+grub-efi-amd64-bin
